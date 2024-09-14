@@ -21,7 +21,6 @@ build/
 
 # Docker files
 db_data/
-*.env
 docker-compose.override.yml
 
 # Editor directories and files
@@ -32,11 +31,6 @@ docker-compose.override.yml
 # Database files
 *.sqlite
 *.sqlite3
-
-# Dependency directories
-/node_modules
-/.pnp
-.pnp.js
 
 # Optional npm cache directory
 .npm
