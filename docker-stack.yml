@@ -3,16 +3,21 @@ version: '3.8'
 services:
   db:
     image: mysql:latest
-    container_name: finance_tracker_db
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     volumes:
       - db_data:/var/lib/mysql
-    ports:
-      - '3306:3306'
     networks:
       - finance_network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 512M
     healthcheck:
       test:
         [
@@ -27,33 +32,19 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    deploy:
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 1G
-        reservations:
-          cpus: '0.25'
-          memory: 512M
 
   backend:
     image: finance-tracker-backend:v1.0
-    build:
-      context: ./backend-ft
-      dockerfile: Dockerfile
     environment:
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
+      DB_HOST: db
+      DB_PORT: 3306
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
-    depends_on:
-      db:
-        condition: service_healthy
     networks:
       - finance_network
     deploy:
-      replicas: 3 # Definiere die Anzahl der Repliken direkt in der Docker Compose Datei
+      replicas: 3
       resources:
         limits:
           cpus: '0.50'
@@ -61,22 +52,13 @@ services:
         reservations:
           cpus: '0.25'
           memory: 256M
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: '10m'
-        max-file: '3'
-    user: '1001:1001'
 
   frontend:
     image: finance-tracker-frontend:v1.0
-    build:
-      context: ./frontend-ft
-      dockerfile: Dockerfile
     networks:
       - finance_network
     deploy:
-      replicas: 2 # Hier die Anzahl der gewünschten Repliken festlegen
+      replicas: 2
       resources:
         limits:
           cpus: '0.25'
@@ -84,16 +66,12 @@ services:
         reservations:
           cpus: '0.10'
           memory: 128M
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: '10m'
-        max-file: '3'
-    user: '1001:1001'
+    ports:
+      - '3000:80'
 
 volumes:
   db_data:
 
 networks:
   finance_network:
-    driver: bridge
+    driver: overlay
