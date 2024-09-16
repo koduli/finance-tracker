@@ -52,8 +52,10 @@ services:
         condition: service_healthy
     networks:
       - finance_network
+    ports:
+      - '5000:5000' # Port-Mapping hinzugefügt
     deploy:
-      replicas: 3 # Definiere die Anzahl der Repliken direkt in der Docker Compose Datei
+      replicas: 1 # Definiere die Anzahl der Repliken direkt in der Docker Compose Datei
       resources:
         limits:
           cpus: '0.50'
@@ -75,8 +77,10 @@ services:
       dockerfile: Dockerfile
     networks:
       - finance_network
+    ports:
+      - '3000:80' # Port-Mapping hinzugefügt
     deploy:
-      replicas: 2 # Hier die Anzahl der gewünschten Repliken festlegen
+      replicas: 1 # Hier die Anzahl der gewünschten Repliken festlegen
       resources:
         limits:
           cpus: '0.25'

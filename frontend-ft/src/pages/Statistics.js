@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { getTransactions } from '../services/api';
 import { Chart } from 'chart.js/auto';
+import '../styles/main.css'; // CSS importieren
 
 function Statistics() {
   const [transactions, setTransactions] = useState([]);
@@ -33,18 +34,31 @@ function Statistics() {
           {
             label: 'Expenses by Category',
             data: amounts,
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56',
+              '#4BC0C0',
+              '#9966FF',
+              '#FF9F40',
+            ],
             hoverOffset: 4,
           },
         ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
       },
     });
   };
 
   return (
-    <div>
+    <div className="main-container">
       <h2>Statistics</h2>
-      <canvas id="myChart" width="400" height="400"></canvas>
+      <div className="chart-container">
+        <canvas id="myChart"></canvas>
+      </div>
     </div>
   );
 }

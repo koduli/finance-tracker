@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import TransactionList from '../components/TransactionList';
 import { getTransactions } from '../services/api';
+import '../styles/main.css'; // Ensure the correct CSS path is imported
 
 function Home() {
   const [transactions, setTransactions] = useState([]);
@@ -16,8 +17,7 @@ function Home() {
   };
 
   return (
-    <div>
-      <h1>Budget Tracker</h1>
+    <div className="main-container">
       <TransactionList transactions={transactions} />
     </div>
   );

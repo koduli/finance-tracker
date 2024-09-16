@@ -6,6 +6,7 @@ function TransactionForm({ initialData = {}, onSubmit }) {
     description: initialData.description || '',
     amount: initialData.amount || '',
     category: initialData.category || '',
+    date: initialData.date || '',
   });
 
   useEffect(() => {
@@ -13,6 +14,7 @@ function TransactionForm({ initialData = {}, onSubmit }) {
       description: initialData.description || '',
       amount: initialData.amount || '',
       category: initialData.category || '',
+      date: initialData.date || '',
     });
   }, [initialData]);
 
@@ -26,7 +28,7 @@ function TransactionForm({ initialData = {}, onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(form);
-    setForm({ description: '', amount: '', category: '' });
+    setForm({ description: '', amount: '', category: '', date: '' });
   };
 
   return (
@@ -47,12 +49,27 @@ function TransactionForm({ initialData = {}, onSubmit }) {
         placeholder="Amount"
         required
       />
-      <input
-        type="text"
+      <select
         name="category"
         value={form.category}
         onChange={handleChange}
-        placeholder="Category"
+        required
+      >
+        <option value="" disabled>
+          Select Category
+        </option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Bills">Bills</option>
+        <option value="Others">Others</option>
+      </select>
+      <input
+        type="date"
+        name="date"
+        value={form.date}
+        onChange={handleChange}
+        required
       />
       <button type="submit">Save</button>
     </form>

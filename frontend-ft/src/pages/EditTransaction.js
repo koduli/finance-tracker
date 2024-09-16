@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import TransactionForm from '../components/TransactionForm';
 import { getTransaction, updateTransaction } from '../services/api';
+import '../styles/main.css'; // CSS importieren
 
 function EditTransaction() {
   const { id } = useParams();
@@ -24,7 +25,7 @@ function EditTransaction() {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <h2>Edit Transaction</h2>
       {transaction ? (
         <TransactionForm initialData={transaction} onSubmit={handleUpdate} />
