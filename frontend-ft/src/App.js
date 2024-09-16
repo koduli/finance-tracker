@@ -6,7 +6,7 @@ import AddTransaction from './pages/AddTransaction';
 import EditTransaction from './pages/EditTransaction';
 import Statistics from './pages/Statistics';
 import Header from './components/Header';
-import './styles/main.css'; // Globales CSS importieren
+import './styles/main.css';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add-transaction" element={<AddTransaction />} />
+          {/* Ensure this path matches the link in TransactionList */}
           <Route path="/edit-transaction/:id" element={<EditTransaction />} />
           <Route path="/statistics" element={<Statistics />} />
         </Routes>

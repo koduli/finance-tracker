@@ -1,4 +1,3 @@
-// src/components/TransactionForm.js
 import React, { useState, useEffect } from 'react';
 
 function TransactionForm({ initialData = {}, onSubmit }) {
@@ -9,7 +8,9 @@ function TransactionForm({ initialData = {}, onSubmit }) {
     date: initialData.date || '',
   });
 
+  // Add a console log to check initial data in TransactionForm.js
   useEffect(() => {
+    console.log('Initial data received:', initialData); // Debugging line
     setForm({
       description: initialData.description || '',
       amount: initialData.amount || '',
@@ -28,7 +29,6 @@ function TransactionForm({ initialData = {}, onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(form);
-    setForm({ description: '', amount: '', category: '', date: '' });
   };
 
   return (

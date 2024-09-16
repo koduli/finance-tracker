@@ -55,7 +55,8 @@ function TransactionList({ transactions }) {
               </div>
             </div>
             <div className="transaction-actions">
-              <Link to={`/edit/${transaction.id}`}>
+              {/* Update Link path to match App.js route */}
+              <Link to={`/edit-transaction/${transaction.id}`}>
                 <button className="transaction-btn">Edit</button>
               </Link>
               <button
