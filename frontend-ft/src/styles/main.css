@@ -1,5 +1,3 @@
-/* src/styles/main.css */
-
 /* Global Styles */
 * {
   box-sizing: border-box;
@@ -9,7 +7,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-image: url('../../public/assets/background.png'); /* Set the background image */
+  background-image: url('../../public/assets/background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -19,18 +17,17 @@ body {
 
 /* Header Styles */
 .header {
-  background-color: #3cb371; /* Money green color */
+  background-color: #3cb371;
   color: white;
-  padding: 20px 30px; /* Increased padding for a larger size */
+  padding: 20px 30px;
 }
 
 .header-content {
   display: flex;
-  justify-content: space-between; /* Spread the items */
+  justify-content: space-between;
   align-items: center;
 }
 
-/* Navigation on the left */
 .nav {
   list-style: none;
   display: flex;
@@ -49,10 +46,9 @@ body {
 }
 
 .nav a:hover {
-  color: #f0f0f0; /* Slightly lighter shade on hover */
+  color: #f0f0f0;
 }
 
-/* App Name on the right */
 .header-title {
   font-size: 1.5em;
   margin: 0;
@@ -65,12 +61,7 @@ body {
   padding: 20px;
   max-width: 1200px;
   margin: 20px auto;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Slightly transparent background for readability */
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -82,13 +73,38 @@ form {
   flex-direction: column;
 }
 
+/* Uniform styling for all input, select, and textarea fields */
 input[type='text'],
-input[type='number'] {
+input[type='number'],
+input[type='date'],
+select,
+textarea {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  color: #333;
+  appearance: none;
+  background-color: white;
+}
+
+select {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+select:focus,
+input[type='date']:focus,
+input[type='text']:focus,
+input[type='number']:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 button,
@@ -108,17 +124,107 @@ input[type='submit']:hover {
   background-color: #45a049;
 }
 
-/* Card style for transactions */
+/* Transaction Card Styles */
 .transaction-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 20px;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
 }
 
-/* CSS for the chart */
+.transaction-card:hover {
+  transform: scale(1.02);
+}
+
+.transaction-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-grow: 1; /* Allows this section to take remaining space */
+}
+
+.transaction-icon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0; /* Prevents icon from shrinking */
+}
+
+.transaction-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1; /* Allows the details section to expand */
+  padding-right: 20px; /* Adds space between details and action buttons */
+}
+
+.transaction-category,
+.transaction-description,
+.transaction-amount,
+.transaction-date {
+  margin-right: 15px;
+}
+
+.transaction-category {
+  font-size: 1.1em;
+  font-weight: bold;
+  flex-basis: 20%; /* Ensures the name has a consistent width */
+}
+
+.transaction-description {
+  flex-basis: 30%; /* Description section */
+}
+
+.transaction-amount {
+  color: #4caf50;
+  font-weight: bold;
+  flex-basis: 15%; /* Amount section */
+  text-align: right; /* Aligns text to the right */
+}
+
+.transaction-date {
+  font-size: 0.9em;
+  color: #666;
+  flex-basis: 20%; /* Date section */
+  text-align: right;
+}
+
+.transaction-actions {
+  display: flex;
+  flex-direction: column; /* Aligns buttons vertically */
+  gap: 5px;
+  justify-content: center; /* Aligns buttons in the center vertically */
+}
+
+button.transaction-btn {
+  background-color: #3cb371;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0; /* Prevents button from shrinking */
+}
+
+button.transaction-btn:hover {
+  background-color: #2e8b57;
+}
+
+button.delete-btn {
+  background-color: #e74c3c;
+}
+
+button.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Chart Container */
 .chart-container {
   position: relative;
   width: 100%;
@@ -126,7 +232,6 @@ input[type='submit']:hover {
   margin: 20px auto;
 }
 
-/* Adjustments for the canvas */
 canvas {
   display: block;
   width: 100% !important;
@@ -134,11 +239,11 @@ canvas {
   height: auto !important;
 }
 
-/* Consistent page title styling */
+/* Page Title */
 .page-title {
   margin-bottom: 20px;
   font-size: 2em;
-  color: #4caf50; /* Matches the green color used for headings */
+  color: #4caf50;
   font-weight: bold;
-  text-align: left; /* Ensures titles are aligned left like the examples */
+  text-align: left;
 }

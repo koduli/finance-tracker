@@ -1,4 +1,3 @@
-// src/pages/AddTransaction.js
 import React, { useState } from 'react';
 import { addTransaction } from '../services/api';
 import '../styles/main.css';
@@ -20,17 +19,18 @@ function AddTransaction() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitting form data:', form); // Log form data to debug
     try {
       const result = await addTransaction(form);
       if (result) {
-        console.log('Transaction added successfully:', result);
+        alert('Transaction added successfully!'); // Alert on successful addition
         setForm({ description: '', amount: '', category: '', date: '' });
       } else {
         console.error('Failed to add transaction.');
+        alert('Failed to add transaction. Please try again.'); // Alert on failure
       }
     } catch (error) {
       console.error('Failed to add transaction:', error);
+      alert('An error occurred while adding the transaction.'); // Alert on error
     }
   };
 
