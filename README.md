@@ -30,7 +30,7 @@ Dieses Projekt umfasst die Entwicklung einer vollständigen CRUD-Anwendung, die 
 
 ## 2. Komponentendiagramm
 
-TODO
+![Komponentendiagramm](frontend-ft/public/assets/component_diagram.png)
 
 ### Kommunikation zwischen den Komponenten
 
