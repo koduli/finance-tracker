@@ -16,7 +16,7 @@ Dieses Projekt umfasst die Entwicklung einer vollständigen CRUD-Anwendung, die 
 - Sicherstellung der Datenintegrität bei gleichzeitigen Zugriffen auf die Datenbank.
 - Implementierung von HTTPS für die Docker REST API zur Sicherung der Kommunikation.
 - Bewältigung von Herausforderungen bei der Containerorchestrierung, wie Netzwerkmanagement und Ressourcenbeschränkungen.
-- Durchführung von Sicherheitsmaßnahmen und Schwachstellenüberprüfungen.
+- Durchführung von Sicherheitsmassnahmen und Schwachstellenüberprüfungen.
 
 ### Techniken, Frameworks und Tools
 
@@ -37,7 +37,7 @@ TODO
 Die Kommunikation zwischen den verschiedenen Komponenten der Anwendung erfolgt über ein Netzwerk innerhalb der Docker-Umgebung.
 
 - **Frontend (React):** Das Frontend sendet HTTP-Anfragen an das Backend, um Benutzerinteraktionen wie das Hinzufügen, Bearbeiten und Löschen von Transaktionen zu verarbeiten. Diese Anfragen erfolgen über eine API, die im Backend implementiert ist.
-- **Backend (Node.js mit Express und Sequelize):** Das Backend fungiert als Vermittler zwischen dem Frontend und der MySQL-Datenbank. Es empfängt Anfragen vom Frontend, führt die erforderlichen CRUD-Operationen auf der MySQL-Datenbank durch und sendet die Ergebnisse zurück an das Frontend. Die Sequelize-Bibliothek wird verwendet, um die Interaktionen mit der Datenbank zu verwalten, einschließlich der Erstellung von Modellen und der Durchführung von Abfragen.
+- **Backend (Node.js mit Express und Sequelize):** Das Backend fungiert als Vermittler zwischen dem Frontend und der MySQL-Datenbank. Es empfängt Anfragen vom Frontend, führt die erforderlichen CRUD-Operationen auf der MySQL-Datenbank durch und sendet die Ergebnisse zurück an das Frontend. Die Sequelize-Bibliothek wird verwendet, um die Interaktionen mit der Datenbank zu verwalten, einschliesslich der Erstellung von Modellen und der Durchführung von Abfragen.
 - **Datenbank (MySQL):** MySQL speichert alle Daten zu den Finanztransaktionen. Das Backend verbindet sich über die in den Docker-Umgebungsvariablen definierten Verbindungsparameter (wie Host, Benutzername, Passwort) mit der MySQL-Datenbank.
 - **Docker:** Docker orchestriert die gesamte Infrastruktur. Es stellt sicher, dass alle Komponenten (Frontend, Backend und MySQL) in isolierten Containern laufen und über ein definiertes Netzwerk (docker-compose Netzwerke) miteinander kommunizieren können. Docker Swarm ermöglicht darüber hinaus die Skalierung der Services und sorgt für Load Balancing.
 
