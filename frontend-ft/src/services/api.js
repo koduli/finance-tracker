@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api'; // Correct base URL with /api
+const API_URL = 'http://localhost:5000/api';
 
 // Create - Add a new transaction
 export const addTransaction = async (transaction) => {

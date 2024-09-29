@@ -119,7 +119,7 @@ $ docker network rm finance-tracker_finance_network
 
 $ docker-compose build
 
-$ docker stack deploy -c docker-stack.yml finance-tracker
+$ docker stack deploy -c docker-compose.yml finance-tracker
 
 $ docker service ls
 $ docker service ps finance-tracker_backend
@@ -134,7 +134,7 @@ $ docker network rm finance-tracker_finance_network
 
 ## 4. Demo
 
-### Home Seite
+### Home
 
 ![Home Page](frontend-ft/public/assets/product/home.png)
 
