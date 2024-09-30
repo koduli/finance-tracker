@@ -119,7 +119,7 @@ $ docker network rm finance-tracker_finance_network
 
 $ docker-compose build
 
-$ docker stack deploy -c docker-compose.yml finance-tracker
+$ docker stack deploy -c docker-compose-swarm.yml finance-tracker
 
 $ docker service ls
 $ docker service ps finance-tracker_backend
@@ -130,6 +130,14 @@ $ docker service ls
 $ docker swarm leave --force
 $ docker network ls
 $ docker network rm finance-tracker_finance_network
+```
+
+**Docker REST API mit HTTP**
+
+```bash
+$ curl http://localhost:2375/version
+$ curl http://localhost:2375/containers/json
+$ curl http://localhost:2375/images/json
 ```
 
 ## 4. Demo
