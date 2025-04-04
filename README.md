@@ -1,68 +1,81 @@
 # Finance Tracker
 
-## 1. Projektauftrag
+---
 
-### Ziel
+## 1. Project Overview
 
-Der Finance Tracker ist eine webbasierte Anwendung zur Verwaltung persönlicher Finanzen. Benutzer können ihre Ausgaben kategorisieren, bearbeiten und löschen sowie Statistiken zu ihren Ausgaben anzeigen lassen. Das Ziel des Projekts ist es, eine benutzerfreundliche und interaktive Webanwendung zu entwickeln, die Finanztransaktionen effizient verwaltet und visualisiert.
+The Finance Tracker is a web-based application for managing personal finances. Users can categorize, edit, and delete their expenses, as well as view statistics on their spending.
+This project involves the development of a complete CRUD application running in Docker containers.
 
-### Projektbeschreibung
-
-Dieses Projekt umfasst die Entwicklung einer vollständigen CRUD-Anwendung, die in Docker-Containern läuft. Die Anwendung bietet Funktionen zum Hinzufügen, Bearbeiten, Löschen und Anzeigen von Finanztransaktionen. Sie wurde mit React für das Frontend und Node.js (mit Express und Sequelize) für das Backend entwickelt. Die Anwendung wird in einer Containerumgebung bereitgestellt, die mithilfe von Docker Compose und Docker Swarm orchestriert wird, um Skalierbarkeit und Belastbarkeit zu gewährleisten.
-
-### Erwartete Schwierigkeiten
-
-- Dateninkonsistenzen zwischen Frontend und Backend managen.
-- Sicherstellung der Datenintegrität bei gleichzeitigen Zugriffen auf die Datenbank.
-- Implementierung von HTTPS für die Docker REST API zur Sicherung der Kommunikation.
-- Bewältigung von Herausforderungen bei der Containerorchestrierung, wie Netzwerkmanagement und Ressourcenbeschränkungen.
-- Durchführung von Sicherheitsmassnahmen und Schwachstellenüberprüfungen.
-
-### Techniken, Frameworks und Tools
+### Techniques, Frameworks, and Tools
 
 - **Frontend:** React, JavaScript, CSS
 - **Backend:** Node.js, Express, Sequelize
-- **Datenbank:** MySQL
-- **Containerisierung:** Docker, Docker Compose, Docker Swarm
-- **Orchestrierung:** Docker Swarm für die Verwaltung mehrerer Container und Load Balancing
-- **Sicherheit:** Benutzerrechte für Container, HTTPS für Docker REST API, Schwachstellenprüfung mit Trivy
-- **Monitoring und Logging:** Überwachung von Containern und Log-Management
+- **Database:** MySQL
+- **Containerization:** Docker, Docker Compose, Docker Swarm
+- **Orchestration:** Docker Swarm for managing multiple containers and load balancing
+- **Security:** User permissions for containers, HTTPS for Docker REST API, vulnerability scanning with Trivy
+- **Monitoring and Logging:** Monitoring containers and log management
 
-## 2. Komponentendiagramm
+---
 
-![Komponentendiagramm](frontend-ft/public/assets/component_diagram.png)
+## 2. Preview
 
-### Kommunikation zwischen den Komponenten
+### Home
 
-Die Kommunikation zwischen den verschiedenen Komponenten der Anwendung erfolgt über ein Netzwerk innerhalb der Docker-Umgebung.
+![Home Page](frontend-ft/public/assets/product/home.png)
 
-- **Frontend (React):** Das Frontend sendet HTTP-Anfragen an das Backend, um Benutzerinteraktionen wie das Hinzufügen, Bearbeiten und Löschen von Transaktionen zu verarbeiten. Diese Anfragen erfolgen über eine API, die im Backend implementiert ist.
-- **Backend (Node.js mit Express und Sequelize):** Das Backend fungiert als Vermittler zwischen dem Frontend und der MySQL-Datenbank. Es empfängt Anfragen vom Frontend, führt die erforderlichen CRUD-Operationen auf der MySQL-Datenbank durch und sendet die Ergebnisse zurück an das Frontend. Die Sequelize-Bibliothek wird verwendet, um die Interaktionen mit der Datenbank zu verwalten, einschliesslich der Erstellung von Modellen und der Durchführung von Abfragen.
-- **Datenbank (MySQL):** MySQL speichert alle Daten zu den Finanztransaktionen. Das Backend verbindet sich über die in den Docker-Umgebungsvariablen definierten Verbindungsparameter (wie Host, Benutzername, Passwort) mit der MySQL-Datenbank.
-- **Docker:** Docker orchestriert die gesamte Infrastruktur. Es stellt sicher, dass alle Komponenten (Frontend, Backend und MySQL) in isolierten Containern laufen und über ein definiertes Netzwerk (docker-compose Netzwerke) miteinander kommunizieren können. Docker Swarm ermöglicht darüber hinaus die Skalierung der Services und sorgt für Load Balancing.
+### Add Transaction
 
-## 3. Docker Features
+![Add Transaction](frontend-ft/public/assets/product/add.png)
 
-**Container aufstarten und anschauen:**
+### Edit Transaction
+
+![Edit Transaction](frontend-ft/public/assets/product/edit.png)
+
+### Statistics
+
+![Statistics](frontend-ft/public/assets/product/statistics.png)
+
+---
+
+## 3. Component Diagram
+
+![Component Diagram](frontend-ft/public/assets/component_diagram.png)
+
+### Communication Between Components
+
+Communication between the various components of the application occurs over a network within the Docker environment.
+
+- **Frontend (React):** The frontend sends HTTP requests to the backend to process user interactions such as adding, editing, and deleting transactions. These requests are made via an API implemented in the backend.
+- **Backend (Node.js with Express and Sequelize):** The backend acts as an intermediary between the frontend and the MySQL database. It receives requests from the frontend, performs the required CRUD operations on the MySQL database, and sends the results back to the frontend. The Sequelize library is used to manage interactions with the database, including model creation and query execution.
+- **Database (MySQL):** MySQL stores all data related to financial transactions. The backend connects to the MySQL database using connection parameters defined in the Docker environment variables (such as host, username, password).
+- **Docker:** Docker orchestrates the entire infrastructure. It ensures that all components (frontend, backend, and MySQL) run in isolated containers and communicate with each other over a defined network (docker-compose networks). Docker Swarm also enables service scaling and load balancing.
+
+---
+
+## 4. Docker Features
+
+**Start and view containers:**
 
 ```bash
 $ docker-compose up -d --build
 $ docker images
 ```
 
-**Container stoppen:**
+**Stop containers:**
 
 ```bash
 $ docker-compose down
 ```
 
-**Laufende Containers anzeigen:**
+**View running containers:**
 
 ```bash
 $ docker ps
 ```
 
-**Tags und Versionierung anschauen:**
+**View tags and versioning:**
 
 ```bash
 $ docker images
@@ -83,7 +96,7 @@ $ docker volume rm finance-tracker_db_data
 $ docker volume ls
 ```
 
-**Ressourcen monitoren:**
+**Monitor resources:**
 
 ```bash
 $ docker stats
@@ -103,7 +116,7 @@ $ trivy image finance-tracker-backend:v1.0
 $ trivy image finance-tracker-frontend:v1.0
 ```
 
-**Skalierung:**
+**Scaling:**
 
 ```bash
 $ docker-compose down
@@ -132,7 +145,7 @@ $ docker network ls
 $ docker network rm finance-tracker_finance_network
 ```
 
-**Docker REST API mit HTTP**
+**Docker REST API with HTTP**
 
 ```bash
 $ curl http://localhost:2375/version
@@ -140,20 +153,4 @@ $ curl http://localhost:2375/containers/json
 $ curl http://localhost:2375/images/json
 ```
 
-## 4. Demo
-
-### Home
-
-![Home Page](frontend-ft/public/assets/product/home.png)
-
-### Add Transaction
-
-![Add Transaction](frontend-ft/public/assets/product/add.png)
-
-### Edit Transaction
-
-![Edit Transaction](frontend-ft/public/assets/product/edit.png)
-
-### Statistics
-
-![Statistics](frontend-ft/public/assets/product/statistics.png)
+---
